@@ -3,7 +3,7 @@ package com.example.loginjpa.service;
 import com.example.loginjpa.dto.ScheduleCreatRequest;
 import com.example.loginjpa.dto.ScheduleCreatResponse;
 import com.example.loginjpa.entity.Schedule;
-import com.example.loginjpa.repository.SheduleRepository;
+import com.example.loginjpa.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class ScheduleService {
 
-    private final SheduleRepository sheduleRepository;
+    private final ScheduleRepository scheduleRepository;
 
     @Transactional
     public ScheduleCreatResponse save(ScheduleCreatRequest request) {
