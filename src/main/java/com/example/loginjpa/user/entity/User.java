@@ -6,8 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Entity
 @Table(name = "users")
@@ -20,6 +18,12 @@ public class User extends BaseEntity {
     private Long id;
     private String username;
     private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private String password;
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
+

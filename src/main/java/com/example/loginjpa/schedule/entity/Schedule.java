@@ -1,5 +1,6 @@
 package com.example.loginjpa.schedule.entity;
 
+import com.example.loginjpa.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,6 +20,10 @@ public class Schedule extends BaseEntity {
     private String content;
     private String author;
     private String password;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 
     public Schedule(String title, String content, String author, String password) {
