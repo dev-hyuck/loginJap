@@ -1,6 +1,6 @@
-package com.example.loginjpa.repository;
+package com.example.loginjpa.schedule.repository;
 
-import com.example.loginjpa.entity.Schedule;
+import com.example.loginjpa.schedule.entity.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

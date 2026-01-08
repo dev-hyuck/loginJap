@@ -1,4 +1,4 @@
-package com.example.loginjpa.dto;
+package com.example.loginjpa.schedule.dto;
 
 import lombok.Getter;
 

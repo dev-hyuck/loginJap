@@ -1,4 +1,4 @@
-package com.example.loginjpa.entity;
+package com.example.loginjpa.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

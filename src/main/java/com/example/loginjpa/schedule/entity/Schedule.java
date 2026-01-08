@@ -1,12 +1,9 @@
-package com.example.loginjpa.entity;
+package com.example.loginjpa.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import tools.jackson.core.ObjectReadContext;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity

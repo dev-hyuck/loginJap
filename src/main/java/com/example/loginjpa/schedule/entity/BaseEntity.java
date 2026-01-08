@@ -1,4 +1,4 @@
-package com.example.loginjpa.entity;
+package com.example.loginjpa.schedule.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
