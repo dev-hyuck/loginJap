@@ -3,6 +3,7 @@ package com.example.loginjpa.schedule.service;
 import com.example.loginjpa.schedule.dto.ScheduleCreatRequest;
 import com.example.loginjpa.schedule.dto.ScheduleCreatResponse;
 import com.example.loginjpa.schedule.dto.ScheduleGetResponse;
+import com.example.loginjpa.schedule.dto.ScheduleUpdateResponse;
 import com.example.loginjpa.schedule.entity.Schedule;
 import com.example.loginjpa.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -81,5 +82,21 @@ public class ScheduleService {
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
+    }
+    @Transactional
+    public ScheduleUpdateResponse update(Long schedulesId, ScheduleGetResponse request) {
+        Schedule schedule = scheduleRepository.findById(schedulesId).orElseThrow(
+                () -> new IllegalArgumentException("없는 멤버입니다.")
+        );
+        schedule.update(request.getTitle(), request.getContent(),request.getContent(),request.getAuthor());
+        return new ScheduleUpdateResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getAuthor(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+
     }
 }
