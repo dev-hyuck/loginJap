@@ -5,7 +5,6 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-
 public class UserCreateResponse {
 
     private final Long id;

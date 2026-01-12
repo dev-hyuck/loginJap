@@ -3,7 +3,6 @@ package com.example.loginjpa.user.dto;
 import lombok.Getter;
 
 @Getter
-
 public class UserUpdateRequest {
 
     private String username;

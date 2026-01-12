@@ -15,7 +15,6 @@ import java.util.List;
 // PostMapping  제작 완료
 @RestController
 @RequiredArgsConstructor
-
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
