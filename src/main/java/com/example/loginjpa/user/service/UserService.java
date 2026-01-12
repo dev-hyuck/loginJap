@@ -4,9 +4,11 @@ import com.example.loginjpa.schedule.repository.ScheduleRepository;
 import com.example.loginjpa.user.dto.*;
 import com.example.loginjpa.user.entity.User;
 import com.example.loginjpa.user.repository.UserRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -110,5 +112,23 @@ public class UserService {
             throw new IllegalArgumentException("없는 Id 입니다 삭제할 수 없습니다.");
         }
         userRepository.deleteById(userId);
+    }
+
+
+    @Transactional(readOnly = true)
+    public UserUpdateResponse singin(@Valid UserUpdateRequest request) {
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
+                () -> new IllegalArgumentException("유효하지 않은 이메일입니다.")
+        );
+        if (!ObjectUtils.nullSafeEquals(user.getPassword(), request.getPassword())) {
+            throw new IllegalArgumentException(" 비밀번호가 일치하지 않습니다.");
+        }
+        return new UserUpdateResponse(
+                user.getId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
     }
 }
