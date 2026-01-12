@@ -1,15 +1,14 @@
 package com.example.loginjpa.user.service;
 
-import com.example.loginjpa.schedule.entity.Schedule;
 import com.example.loginjpa.schedule.repository.ScheduleRepository;
-import com.example.loginjpa.user.dto.UserCreateRequest;
-import com.example.loginjpa.user.dto.UserCreateResponse;
-import com.example.loginjpa.user.dto.UserGetResponse;
+import com.example.loginjpa.user.dto.*;
 import com.example.loginjpa.user.entity.User;
 import com.example.loginjpa.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,6 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final ScheduleRepository scheduleRepository;
 
     @Transactional
     public UserCreateResponse save(UserCreateRequest userCreateRequest) {
@@ -74,5 +72,43 @@ public class UserService {
 
         return dtos;
 
+    }
+
+    @Transactional(readOnly = true)
+    public UserGetResponse getOne(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("없는 유저 입니다.")
+        );
+        return new UserGetResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
+    }
+
+    @Transactional
+    public UserUpdateResponse update(Long userId, UserUpdateRequest request) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("없는 ID 입니다.")
+        );
+
+        user.update(request.getUsername(), request.getEmail(), request.getPassword());
+        return new UserUpdateResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getModifiedAt()
+        );
+    }
+
+    public void delete(Long userId) {
+        boolean existence = userRepository.existsById(userId);
+        if (!existence) {
+            throw new IllegalArgumentException("없는 Id 입니다 삭제할 수 없습니다.");
+        }
+        userRepository.deleteById(userId);
     }
 }

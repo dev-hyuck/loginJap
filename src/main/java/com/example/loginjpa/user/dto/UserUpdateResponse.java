@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Getter
 
-public class UserGetResponse {
+public class UserUpdateResponse {
 
     private final Long id;
     private final String username;
@@ -14,7 +14,7 @@ public class UserGetResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public UserGetResponse(Long id, String username, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public UserUpdateResponse(Long id, String username, String email, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.username = username;
         this.email = email;

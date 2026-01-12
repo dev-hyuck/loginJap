@@ -33,7 +33,7 @@ public class Schedule extends BaseEntity {
         this.password = password;
     }
 
-    public void update(String title, String content, String password, String author) {
+    public void update(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;

@@ -88,7 +88,7 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(schedulesId).orElseThrow(
                 () -> new IllegalArgumentException("없는 멤버입니다.")
         );
-        schedule.update(request.getTitle(), request.getContent(),request.getContent(),request.getAuthor());
+        schedule.update(request.getTitle(),request.getContent(),request.getAuthor());
         return new ScheduleUpdateResponse(
                 schedule.getId(),
                 schedule.getTitle(),
@@ -98,5 +98,13 @@ public class ScheduleService {
                 schedule.getModifiedAt()
         );
 
+    }
+
+    public void delete(Long schedulesId) {
+        boolean existence =  scheduleRepository.existsById(schedulesId);
+        if (!existence) {
+            throw new IllegalArgumentException("없는 스케줄 입니다.");
+        }
+        scheduleRepository.deleteById(schedulesId);
     }
 }

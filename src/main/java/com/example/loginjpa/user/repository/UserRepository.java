@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByUsernameOrderByModifiedAtDesc(String username);
     List<User> findAllByOrderByModifiedAtDesc();
